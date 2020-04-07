@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import { ZONE } from './constant';
+import TableList from './TableList';
+import styled from 'styled-components';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+
+  render() {
+    return(
+        Object.keys(ZONE).map(item => {
+          return (
+            <Section>
+              <Header>{item}</Header>
+              <TableList area={ZONE[item]}/>
+            </Section>
+          )
+        })
+    )
+  }
 }
 
 export default App;
+
+const Section = styled.div`
+  display: flex;
+  place-items: center;
+  flex-direction: column;
+`;
+
+const Header = styled.div`
+  height: 30px;
+  display: flex;
+  color: #ffffff;
+  font-weight: 400;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  background-color: #0e1921;
+`;
